@@ -193,6 +193,7 @@
 #define MSP_SET_GOVERNOR_PROFILE             149
 #define MSP_LED_STRIP_SETTINGS               150
 #define MSP_SET_LED_STRIP_SETTINGS           151
+#define MSP_PERSISTENT_STATS                 152
 
 #define MSP_UID                              160
 

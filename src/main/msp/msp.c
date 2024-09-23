@@ -121,6 +121,7 @@
 #include "pg/motor.h"
 #include "pg/rx.h"
 #include "pg/rx_spi.h"
+#include "pg/stats.h"
 #include "pg/usb.h"
 #include "pg/vcd.h"
 #include "pg/vtx_table.h"
@@ -1227,6 +1228,14 @@ static bool mspProcessOutCommand(int16_t cmdMSP, sbuf_t *dst)
             sbufWriteU16(dst, escTemperature2);
         }
         break;
+
+#ifdef USE_PERSISTENT_STATS
+    case MSP_PERSISTENT_STATS:
+        sbufWriteU32(dst, statsConfig()->stats_total_flights);
+        sbufWriteU32(dst, statsConfig()->stats_total_time_s);
+        sbufWriteU32(dst, statsConfig()->stats_total_dist_m);
+        break;
+#endif
 
 #ifdef USE_VTX_COMMON
     case MSP2_GET_VTX_DEVICE_STATUS:
