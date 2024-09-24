@@ -3198,6 +3198,14 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
         break;
 #endif
 
+#ifdef USE_PERSISTENT_STATS
+    case MSP_SET_PERSISTENT_STATS:
+        statsConfigMutable()->stats_total_flights = sbufReadU32(src);
+        statsConfigMutable()->stats_total_time_s = sbufReadU32(src);
+        statsConfigMutable()->stats_total_dist_m = sbufReadU32(src);
+        break;
+#endif
+
 #ifdef USE_LED_STRIP
     case MSP_SET_LED_STRIP_SETTINGS:
         ledStripConfigMutable()->ledstrip_beacon_armed_only = sbufReadU8(src);
